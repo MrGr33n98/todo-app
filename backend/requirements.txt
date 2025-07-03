@@ -5,3 +5,5 @@ azure-cosmos
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
+azure-storage-blob
+pytest
