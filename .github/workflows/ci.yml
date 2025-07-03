@@ -1,0 +1,31 @@
+name: Build and Test API
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t todo-api:latest ./backend
+          echo "Docker image built successfully!"
+
+      # TODO: Add Trivy image scan
+      - name: Scan image with Trivy
+        run: echo "Trivy scan placeholder"
+
+      # TODO: Add image signing step
+      - name: Sign Docker image
+        run: echo "Image signing placeholder"
