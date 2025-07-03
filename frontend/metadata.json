@@ -1,0 +1,5 @@
+{
+  "name": "Gemini-Powered To-Do App",
+  "description": "A sophisticated To-Do application that helps you manage your tasks. It features user and admin roles, local storage persistence, and an AI-powered task suggester to help you break down your goals.",
+  "requestFramePermissions": []
+}

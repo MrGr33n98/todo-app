@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+azure-cosmos
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
