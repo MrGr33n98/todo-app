@@ -22,10 +22,21 @@ jobs:
           docker build -t todo-api:latest ./backend
           echo "Docker image built successfully!"
 
-      # TODO: Add Trivy image scan
-      - name: Scan image with Trivy
-        run: echo "Trivy scan placeholder"
 
-      # TODO: Add image signing step
+      - name: Scan image for vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: todo-api:latest
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
       - name: Sign Docker image
-        run: echo "Image signing placeholder"
+        run: |
+          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' todo-api:latest || docker inspect --format='{{.Id}}' todo-api:latest)
+          cosign sign --yes "$DIGEST"
